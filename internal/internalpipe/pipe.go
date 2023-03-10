@@ -90,20 +90,8 @@ func (p Pipe[T]) Sort(less func(*T, *T) bool) Pipe[T] {
 }
 
 // Reduce applies the result of a function to each element one-by-one: f(p[n], f(p[n-1], f(p[n-2, ...]))).
-func (p Pipe[T]) Reduce(fn AccumFn[T]) *T {
-	data := p.Do()
-	switch len(data) {
-	case 0:
-		return nil
-	case 1:
-		return &data[0]
-	default:
-		res := data[0]
-		for _, val := range data[1:] {
-			res = fn(&res, &val)
-		}
-		return &res
-	}
+func (p Pipe[T]) Reduce(accum AccumFn[T]) *T {
+	return Reduce(p.Do, accum)
 }
 
 // Sum returns the sum of all elements. It is similar to Reduce but is able to work in parallel.
