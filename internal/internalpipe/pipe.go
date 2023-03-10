@@ -3,11 +3,11 @@ package internalpipe
 import (
 	"math"
 	"sync"
-	"sync/atomic"
 
 	"golang.org/x/exp/constraints"
 
 	"github.com/koss-null/lambda/internal/algo/parallel/qsort"
+	"github.com/koss-null/lambda/internal/atomic"
 )
 
 const (
@@ -31,13 +31,7 @@ type Pipe[T any] struct {
 // returns the slice where each element is n[i] = f(p[i]).
 func (p Pipe[T]) Map(fn func(T) T) Pipe[T] {
 	return Pipe[T]{
-		Fn: func(i int) (*T, bool) {
-			if obj, skipped := p.Fn(i); !skipped {
-				res := fn(*obj)
-				return &res, false
-			}
-			return nil, true
-		},
+		Fn:            Map[T](p.Fn, fn),
 		Len:           p.Len,
 		ValLim:        p.ValLim,
 		GoroutinesCnt: p.GoroutinesCnt,
@@ -47,7 +41,7 @@ func (p Pipe[T]) Map(fn func(T) T) Pipe[T] {
 // Filter leaves only items with true predicate fn.
 func (p Pipe[T]) Filter(fn func(*T) bool) Pipe[T] {
 	return Pipe[T]{
-		Fn:            Filter,
+		Fn:            Filter[T](p.Fn, fn),
 		Len:           p.Len,
 		ValLim:        p.ValLim,
 		GoroutinesCnt: p.GoroutinesCnt,

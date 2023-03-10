@@ -3,7 +3,7 @@ package internalpipe
 type AccumFn[T any] func(*T, *T) T
 
 func Reduce[T any](dataFn func() []T, accum AccumFn[T]) *T {
-	data := p.Do()
+	data := dataFn()
 	switch len(data) {
 	case 0:
 		return nil
