@@ -5,7 +5,7 @@ import (
     fuzz "github.com/AdaLogics/go-fuzz-headers"
 
     "github.com/koss-null/lambda/internal/bitmap"
-    // "github.com/koss-null/lambda/internal/algo/batch"
+    "github.com/koss-null/lambda/internal/algo/batch"
     "github.com/koss-null/lambda/internal/algo/parallel/mergesort"
     "github.com/koss-null/lambda/internal/algo/parallel/qsort"
     "github.com/koss-null/lambda/pkg/pipe"
@@ -61,17 +61,17 @@ func mayhemit(data []byte) int {
                 pipe.Slice(intArr)
                 return 0
 
-            // case 4:
-            //     arrSize, _ := fuzzConsumer.GetInt()
-            //     var intArr []int
-            //     for i := 0; i < arrSize; i++ {
-            //         temp, _ := fuzzConsumer.GetInt()
-            //         intArr = append(intArr, temp)
-            //     }
-            //     testBatch, _ := fuzzConsumer.GetInt()
+            case 4:
+                arrSize, _ := fuzzConsumer.GetInt()
+                var intArr []int
+                for i := 0; i < arrSize; i++ {
+                    temp, _ := fuzzConsumer.GetInt()
+                    intArr = append(intArr, temp)
+                }
+                testBatch, _ := fuzzConsumer.GetInt()
 
-            //     batch.Do(intArr, testBatch)
-            //     return 0
+                batch.Do(intArr, testBatch)
+                return 0
 
             case 5:
                 arrSize, _ := fuzzConsumer.GetInt()
