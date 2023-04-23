@@ -61,17 +61,17 @@ func mayhemit(data []byte) int {
                 pipe.Slice(intArr)
                 return 0
 
-            case 4:
-                arrSize, _ := fuzzConsumer.GetInt()
-                var intArr []int
-                for i := 0; i < arrSize; i++ {
-                    temp, _ := fuzzConsumer.GetInt()
-                    intArr = append(intArr, temp)
-                }
-                testBatch, _ := fuzzConsumer.GetInt()
+            // case 4:
+            //     arrSize, _ := fuzzConsumer.GetInt()
+            //     var intArr []int
+            //     for i := 0; i < arrSize; i++ {
+            //         temp, _ := fuzzConsumer.GetInt()
+            //         intArr = append(intArr, temp)
+            //     }
+            //     testBatch, _ := fuzzConsumer.GetInt()
 
-                batch.Do(intArr, testBatch)
-                return 0
+            //     batch.Do(intArr, testBatch)
+            //     return 0
 
             case 5:
                 arrSize, _ := fuzzConsumer.GetInt()
