@@ -5,7 +5,7 @@ import (
     fuzz "github.com/AdaLogics/go-fuzz-headers"
 
     "github.com/koss-null/lambda/internal/bitmap"
-    "github.com/koss-null/lambda/internal/algo/batch"
+    // "github.com/koss-null/lambda/internal/algo/batch"
     "github.com/koss-null/lambda/internal/algo/parallel/mergesort"
     "github.com/koss-null/lambda/internal/algo/parallel/qsort"
     "github.com/koss-null/lambda/pkg/pipe"
