@@ -59,7 +59,9 @@ jobs:
       fail-fast: false
       matrix:
         mayhemfile:
-          - mayhem/Mayhemfile
+          - mayhem/fuzz_lambda_batch.mayhemfile
+          - mayhem/fuzz_lambda_bitmap.mayhemfile
+          - mayhem/fuzz_lambda_sort.mayhemfile
 
     steps:
       - uses: actions/checkout@v3

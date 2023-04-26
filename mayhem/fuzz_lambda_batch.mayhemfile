@@ -2,11 +2,11 @@
 project: lambda
 
 # Target name (should be unique within the project)
-target: fuzzlambda
+target: fuzz_lambda_batch
 
 # List of commands used to test the target
 cmds:
 
     # Command used to start the target, "@@" is the input file
     # (when "@@" is omitted Mayhem defaults to stdin inputs)
-    - cmd: ./fuzzlambda.libfuzzer
+    - cmd: ./fuzz_lambda_batch.libfuzzer
